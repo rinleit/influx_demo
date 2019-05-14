@@ -73,5 +73,5 @@ curl -XPOST "http://localhost:8086/query" --data-urlencode "q=CREATE USER admin 
 - admin : with your own password (note that the password requires single quotes)
 
 # Reference
-[InfluxDB Python Examples]!(https://influxdb-python.readthedocs.io/en/latest/examples.html)
+[InfluxDB Python Examples]!(https://influxdb-python.readthedocs.io/en/latest/examples.html)  
 [Managing InfluxDB users]!(https://docs.influxdata.com/chronograf/v1.7/administration/managing-influxdb-users/)
