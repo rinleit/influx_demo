@@ -9,8 +9,8 @@ from influxdb import DataFrameClient
 
 def main(host='localhost', port=8086):
     """Instantiate the connection to the InfluxDB client."""
-    user = 'root'
-    password = 'root'
+    user = 'admin'
+    password = 'admin'
     dbname = 'demo'
     protocol = 'json'
 

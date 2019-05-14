@@ -8,11 +8,13 @@ from influxdb import InfluxDBClient
 
 def main(host='localhost', port=8086):
     """Instantiate a connection to the InfluxDB."""
-    user = 'root'
-    password = 'root'
+    user = 'admin'
+    password = 'admin'
+
     dbname = 'example'
-    dbuser = 'smly'
-    dbuser_password = 'my_secret_password'
+    dbuser = 'root'
+    dbuser_password = 'rootroot'
+
     query = 'select value from cpu_load_short;'
     json_body = [
         {
