@@ -68,8 +68,19 @@ class influxdbExample():
         else:
             # Has result
             return result
-    
-    def delete(self, _client, _dbname):
+    def delete(self, _client, _dbname, _time):
+        try:
+            _query = "delete from %s where time=%s" % (_dbname, _time)
+            _client.query(_query)
+        except Exception as _e:
+            print(_e)
+            # Delete Fail
+            return False
+        else:
+            # Delete Success
+            return True
+
+    def delete_db(self, _client, _dbname):
         try:
             _client.drop_database(_dbname)
         except Exception as _e:
@@ -130,22 +141,27 @@ def main(_host='localhost', _port=8086):
     print(_result)
 
     # Update
-
     # fix host from server01 to server02
-    _obj_data[0]["tags"]["host"] = "server02"
+    _obj_data[0]["fields"]["Int_value"] = 5
     _ret = _influx.update(_client=_client, _data=_obj_data)
     if _ret:
         print("Update Success !!!")
     else:
         print("Update Failed !!!")
 
-    # Delete
-    _ret = _influx.delete(_client=_client, _dbname=_DBNAME)
+    # Delete Rows
+    _ret = _influx.delete(_client=_client, _dbname=_DBNAME, _time=_old_time)
     if _ret:
         print("Delete Success !!!")
     else:
         print("Delete Failed !!!")
 
+    # Delete DB Name
+    _ret = _influx.delete_db(_client=_client, _dbname=_DBNAME)
+    if _ret:
+        print("Delete DB Success !!!")
+    else:
+        print("Delete DB Failed !!!")
 
 def parse_args():
     """Parse the args."""
