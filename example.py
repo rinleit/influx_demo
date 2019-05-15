@@ -141,7 +141,7 @@ def main(_host='localhost', _port=8086):
     print(_result)
 
     # Update
-    # fix host from server01 to server02
+    # fix fields: Int_value
     _obj_data[0]["fields"]["Int_value"] = 5
     _ret = _influx.update(_client=_client, _data=_obj_data)
     if _ret:
