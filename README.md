@@ -14,24 +14,30 @@ pip install -r requirement.txt
 
 ### line 1
 ```
-curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
-source /etc/lsb-release
-echo "deb https://repos.influxdata.com/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
+curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add - 
 ```
+
 ### line 2
 ```
-sudo apt-get update && sudo apt-get install influxdb
+source /etc/lsb-release 
 ```
 ### line 3
 ```
+echo "deb https://repos.influxdata.com/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
+```
+### line 4
+```
+sudo apt-get update && sudo apt-get install influxdb
+```
+### line 5
+```
 sudo apt-get install influxdb-client
 ```
-
-### line 4
+### line 6
 ```
 sudo service influxdb start
 ```
-### line 5
+### line 7
 ```
 influx -version
 ```
@@ -71,6 +77,8 @@ curl -XPOST "http://localhost:8086/query" --data-urlencode "q=CREATE USER admin 
 - localhost : with the IP or hostname of your InfluxDB OSS instance or one of your InfluxEnterprise data nodes
 - admin : with your own username
 - admin : with your own password (note that the password requires single quotes)
+
+- If this text {"results":[{"statement_id":0}]} show on screen, setup done !!!
 
 # Reference
 [InfluxDB Python Examples]!(https://influxdb-python.readthedocs.io/en/latest/examples.html)  
