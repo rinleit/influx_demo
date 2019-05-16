@@ -11,35 +11,8 @@ pip install -r requirement.txt
 # Setup InfluxDB on Ubuntu OS.
 
 ## Setup
-
-### line 1
 ```
-curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add - 
-```
-
-### line 2
-```
-source /etc/lsb-release 
-```
-### line 3
-```
-echo "deb https://repos.influxdata.com/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
-```
-### line 4
-```
-sudo apt-get update && sudo apt-get install influxdb
-```
-### line 5
-```
-sudo apt-get install influxdb-client
-```
-### line 6
-```
-sudo service influxdb start
-```
-### line 7
-```
-influx -version
+sh ./setup.sh
 ```
 
 InfluxDB shell version: 1.1.1 (if this text is visible on your screen, setup will be done!)

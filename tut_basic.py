@@ -10,10 +10,10 @@ def main(host='localhost', port=8086):
     """Instantiate a connection to the InfluxDB."""
     user = 'admin'
     password = 'admin'
-
     dbname = 'example'
-    dbuser = 'root'
-    dbuser_password = 'rootroot'
+
+    # dbuser = 'root'
+    # dbuser_password = 'rootroot'
 
     query = 'select value from cpu_load_short;'
     json_body = [
@@ -41,8 +41,8 @@ def main(host='localhost', port=8086):
     print("Create a retention policy")
     client.create_retention_policy('awesome_policy', '3d', 3, default=True)
 
-    print("Switch user: " + dbuser)
-    client.switch_user(dbuser, dbuser_password)
+    # print("Switch user: " + dbuser)
+    # client.switch_user(dbuser, dbuser_password)
 
     print("Write points: {0}".format(json_body))
     client.write_points(json_body)
@@ -51,9 +51,6 @@ def main(host='localhost', port=8086):
     result = client.query(query)
 
     print("Result: {0}".format(result))
-
-    print("Switch user: " + user)
-    client.switch_user(user, password)
 
     print("Drop database: " + dbname)
     client.drop_database(dbname)
@@ -69,7 +66,6 @@ def parse_args():
     parser.add_argument('--port', type=int, required=False, default=8086,
                         help='port of InfluxDB http API')
     return parser.parse_args()
-
 
 if __name__ == '__main__':
     args = parse_args()

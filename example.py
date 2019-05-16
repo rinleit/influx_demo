@@ -107,7 +107,7 @@ def main(_host='localhost', _port=8086):
     _influx.create_retention_policy(_client=_client)
 
     # Get Time
-    _time = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+    _time = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')      
     _old_time = _time
 
     # Insert
@@ -115,14 +115,14 @@ def main(_host='localhost', _port=8086):
         {
             "measurement": "cpu_load_short",
             "tags": {
-                "host": "server01",
+                "host": "server02",
                 "region": "us-west"
             },
             "time": _time,
             "fields": {
                 "Float_value": 0.64,
-                "Int_value": 3,
-                "String_value": "Text",
+                "Int_value": 5,
+                "String_value": "Text123",
                 "Bool_value": True
             }
         }
@@ -135,33 +135,33 @@ def main(_host='localhost', _port=8086):
     else:
         print("Insert Failed !!!")
 
-    # Get
-    _query = "select Float_value from cpu_load_short;"
-    _result = _influx.get(_client=_client, _query=_query)
-    print(_result)
+    # # Get
+    # _query = "select Float_value from cpu_load_short;"
+    # _result = _influx.get(_client=_client, _query=_query)
+    # print(_result)
 
-    # Update
-    # fix fields: Int_value
-    _obj_data[0]["fields"]["Int_value"] = 5
-    _ret = _influx.update(_client=_client, _data=_obj_data)
-    if _ret:
-        print("Update Success !!!")
-    else:
-        print("Update Failed !!!")
+    # # Update
+    # # fix fields: Int_value
+    # _obj_data[0]["fields"]["Int_value"] = 5
+    # _ret = _influx.update(_client=_client, _data=_obj_data)
+    # if _ret:
+    #     print("Update Success !!!")
+    # else:
+    #     print("Update Failed !!!")
 
-    # Delete Rows
-    _ret = _influx.delete(_client=_client, _dbname=_DBNAME, _time=_old_time)
-    if _ret:
-        print("Delete Success !!!")
-    else:
-        print("Delete Failed !!!")
+    # # Delete Rows
+    # _ret = _influx.delete(_client=_client, _dbname=_DBNAME, _time=_old_time)
+    # if _ret:
+    #     print("Delete Success !!!")
+    # else:
+    #     print("Delete Failed !!!")
 
-    # Delete DB Name
-    _ret = _influx.delete_db(_client=_client, _dbname=_DBNAME)
-    if _ret:
-        print("Delete DB Success !!!")
-    else:
-        print("Delete DB Failed !!!")
+    # # Delete DB Name
+    # _ret = _influx.delete_db(_client=_client, _dbname=_DBNAME)
+    # if _ret:
+    #     print("Delete DB Success !!!")
+    # else:
+    #     print("Delete DB Failed !!!")
 
 def parse_args():
     """Parse the args."""
