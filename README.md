@@ -52,7 +52,10 @@ curl -XPOST "http://localhost:8086/query" --data-urlencode "q=CREATE USER admin 
 - admin : with your own password (note that the password requires single quotes)
 
 - If this text {"results":[{"statement_id":0}]} show on screen, setup done !!!
-
+# Remote to Influxdb server
+```
+influx -host 'host' -port 'port' -username 'username' -password 'password'
+```
 # Reference
 [InfluxDB Python Examples]!(https://influxdb-python.readthedocs.io/en/latest/examples.html)  
 [Managing InfluxDB users]!(https://docs.influxdata.com/chronograf/v1.7/administration/managing-influxdb-users/)
